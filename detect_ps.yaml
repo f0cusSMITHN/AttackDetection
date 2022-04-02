@@ -1,0 +1,1 @@
+alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:"DNS Lookup (badsite.domain) related to malicious PS-script";flow:from_client; dns_query; content:"badsite.domain"; nocase; pcre:"/(^|\.|\s)badsite.domain($|\s)/U"; target:src_ip; classtype: malicious-psscript; metadata: created_at 2022_04_02; reference: url, github.com/f0cusSMITHN/AttackDetection; sid: 10004444; rev: 1;)
